@@ -23,7 +23,7 @@ spec:
           - --engine
           - MySQL
           - --db-subnet-group-name
-          - demo-workload-subnet-01
+          - rds-epinio-pilot
           - --allocated-storage
           - "20"
           - --master-username
