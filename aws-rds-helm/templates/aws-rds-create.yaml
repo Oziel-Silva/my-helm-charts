@@ -25,7 +25,7 @@ spec:
           - --allocated-storage
           - "20"
           - --master-username
-          - admin
+          - {{ .Values.dbuser }}
           - --master-user-password
           - {{ .Values.password }}
           volumeMounts:
