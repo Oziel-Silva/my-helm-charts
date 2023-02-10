@@ -22,6 +22,8 @@ spec:
           - db.t3.micro
           - --engine
           - MySQL
+          - --db-subnet-group-name
+          - demo-workload-subnet-01
           - --allocated-storage
           - "20"
           - --master-username
