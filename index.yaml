@@ -3,12 +3,12 @@ entries:
   aws-rds-helm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-10T10:12:50.128388-03:00"
+    created: "2023-02-10T10:47:16.006971-03:00"
     description: A Helm chart for Kubernetes
-    digest: 38383d9022d5e93dc9b96645dbbea538133242ce19f8df3ceb623dee9d7eff98
+    digest: ea892ee9fdf925aa40d10a520083e54dcdc81eb207107ee39069d3483c6d29d0
     name: aws-rds-helm
     type: application
     urls:
     - https://oziel-silva.github.io/my-helm-charts/aws-rds-helm-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-10T10:12:50.127921-03:00"
+generated: "2023-02-10T10:47:16.006554-03:00"
