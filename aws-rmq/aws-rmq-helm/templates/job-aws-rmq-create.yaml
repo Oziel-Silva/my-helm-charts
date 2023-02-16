@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-rmq-create
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  annotations:  
+    "helm.sh/hook": pre-install
+spec:
+  ttlSecondsAfterFinished: 120
+  template:
+    spec:
+      containers:
+        - name: aws-cli
+          image: amazon/aws-cli
+          command: [ "aws", "mq", "create-broker" ]
+          args: 
+            - --broker-name
+            - {{ .Release.Name }}-epinio-broker
+            - --engine-type
+            - rabbitmq
+            - --deployment-mode
+            - single_instance
+            - --engine-version
+            - "3.10.10"
+            - --host-instance-type
+            - mq.t3.micro
+            - --no-publicly-accessible
+            - --no-auto-minor-version-upgrade
+            - --users
+            - Username=oziel,Password={{ .Values.Password}}
+          volumeMounts:
+            - name: aws-cli-config
+              mountPath: /root/.aws
+      restartPolicy: Never
+      volumes:
+        - name: aws-cli-config
