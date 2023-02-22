@@ -12,7 +12,6 @@ spec:
   template:
     spec:
       containers:
-        conditions: 
         - name: aws-cli
           image: amazon/aws-cli
           command: ["aws", "rds", "wait", "db-instance-available"]
@@ -26,33 +25,3 @@ spec:
       restartPolicy: Never
       volumes:
         - name: aws-cli-config
-# ---
-
-# apiVersion: batch/v1
-# kind: CronJob
-# metadata:
-#   name: aws-cli-get-status
-# spec:
-#   schedule: "* * * * *"
-#   jobTemplate:
-#     spec:
-#       template:
-#         spec:
-#           containers:
-#           - name: aws-cli-get-status
-#             image: amazon/aws-cli
-#             imagePullPolicy: IfNotPresent
-#             command:
-#             - /bin/sh
-#             - -c
-#             - |
-#               #!/usr/bin/env bash
-#               DBINSTANCEIDENTIFIER="{{ .Release.Name }}-rds-mysql"
-#               ENDPOINT_ADDRESS=$(aws rds describe-db-instances \
-#                   --query 'DBInstances[*].[Endpoint.Address]' \
-#                   --filters Name=db-instance-id,Values=$DBINSTANCEIDENTIFIER \
-#                   --output text \
-#                   )
-
-#               echo "Endpoint Address --> $ENDPOINT_ADDRESS"
-#           restartPolicy: OnFailure
